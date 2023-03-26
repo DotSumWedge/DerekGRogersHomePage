@@ -1,0 +1,139 @@
+<script lang="ts">
+	import Counter from './Counter.svelte';
+	import welcome from '$lib/images/svelte-welcome.webp';
+	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import * as Threlte from '@threlte/core';
+	import * as Three from 'three';
+	import * as Utils from 'three/src/math/MathUtils';
+	import { Pane } from 'tweakpane';
+	import { browser } from '$app/environment';
+
+	const markovChainFile = {
+
+	}
+
+	if(browser){
+		const pane = new Pane({title: 'Markov Chain'})
+
+		const inputFile = pane.addFolder({title: 'File'})
+	}
+</script>
+
+<div class="scene">
+	<Threlte.Canvas>
+	<!-- Camera -->
+	<Threlte.PerspectiveCamera 
+		position={{ x: 20, y: 20, z: 20 }} 
+		fov={50}>
+		<!-- Controls -->
+		<Threlte.OrbitControls autoRotate />
+	</Threlte.PerspectiveCamera>
+
+	<!-- Lights the scene equally -->
+	<Threlte.AmbientLight color="white" intensity={0.2} />
+
+	<!-- Light that casts a shadow -->
+	<Threlte.DirectionalLight
+		color="white"
+		intensity={2}
+		position={{ x: 10, y: 10 }}
+		shadow={{
+		camera: { top: 8 },
+		}}
+	/>
+
+	<!-- Sphere -->
+	<Threlte.Mesh
+		geometry={new Three.SphereGeometry(4, 64, 64)}
+		material={new Three.MeshStandardMaterial({ color: 'white' })}
+		position={{ y: 4 }}
+		receiveShadow
+		castShadow
+	/>
+
+		<!-- Sphere -->
+			<Threlte.Mesh
+			geometry={new Three.SphereGeometry(4, 64, 64)}
+			material={new Three.MeshStandardMaterial({ color: 'white' })}
+			position={{ y: 14 }}
+			receiveShadow
+			castShadow
+		/>
+
+	<!-- Floor -->
+	<Threlte.Mesh
+		geometry={new Three.PlaneGeometry(20, 20)}
+		material={new Three.MeshStandardMaterial({
+		color: 'white',
+		side: Three.DoubleSide,
+		})}
+		rotation={{ x: Utils.DEG2RAD * 90 }}
+		receiveShadow
+	/>
+	</Threlte.Canvas>
+</div>
+
+<style>
+.scene {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(hsl(220 14% 20%), hsl(220 20% 10%));
+	background-attachment: fixed;
+}
+</style>
+
+<!-- <svelte:head>
+	<title>Home</title>
+	<meta name="description" content="Svelte demo app" />
+</svelte:head> -->
+
+<!-- <section>
+	<h1>
+		<span class="welcome">
+			<picture>
+				<source srcset={welcome} type="image/webp" />
+				<img src={welcome_fallback} alt="Welcome" />
+			</picture>
+		</span>
+
+		to your new<br />SvelteKit app
+	</h1>
+
+	<h2>
+		try editing <strong>src/routes/+page.svelte</strong>
+	</h2>
+
+	<Counter />
+</section> -->
+
+<!-- <style>
+	section {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		flex: 0.6;
+	}
+
+	h1 {
+		width: 100%;
+	}
+
+	.welcome {
+		display: block;
+		position: relative;
+		width: 100%;
+		height: 0;
+		padding: 0 0 calc(100% * 495 / 2048) 0;
+	}
+
+	.welcome img {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		display: block;
+	}
+</style> -->
