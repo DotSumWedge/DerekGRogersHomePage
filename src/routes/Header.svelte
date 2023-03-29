@@ -6,8 +6,8 @@
 
 <header>
 	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
+		<a href="https://github.com/DotSumWedge">
+			<img src={github} alt="GitHub" />
 		</a>
 	</div>
 
@@ -35,7 +35,7 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
+		<a href="https://github.com/derogers">
 			<img src={github} alt="GitHub" />
 		</a>
 	</div>

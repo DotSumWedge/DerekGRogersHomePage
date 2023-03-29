@@ -7,11 +7,16 @@
     import { spring } from 'svelte/motion'
 	import { degToRad } from 'three/src/math/MathUtils'
 	import * as Utils from 'three/src/math/MathUtils';
+    import Header from '../Header.svelte';
 
     const gridHelper = new Three.GridHelper(40, 40)
     const axesHelper = new Three.AxesHelper(20)
 
     const markovChainFile = null;
+
+    const startPoint = new Three.Vector3(0, 0, 0);
+    const endPoint = new Three.Vector3(-8, 0, 0);
+    const curve = new Three.CatmullRomCurve3([startPoint, endPoint]);
 
     if(browser){
         const pane = new Pane({title: 'Markov Chain'})
@@ -62,11 +67,20 @@
             castShadow
         />
 
-        <!-- Sphere -->
-            <Threlte.Mesh
+        <!-- Node -->
+        <Threlte.Mesh
             geometry={new Three.SphereGeometry(4, 64, 64)}
             material={new Three.MeshStandardMaterial({ color: 'yellow' })}
             position={{ x: 14, y:4 }}
+            receiveShadow
+            castShadow
+        />
+
+        <!-- Edge -->
+        <Threlte.Mesh
+            geometry={new Three.TubeGeometry(curve, 20, 1, 8, false)}
+            material={new Three.MeshStandardMaterial({ color: 'red' })}
+            position={{ x: 11, y:4 }}
             receiveShadow
             castShadow
         />
