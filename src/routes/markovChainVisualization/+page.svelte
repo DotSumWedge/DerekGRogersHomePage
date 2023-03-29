@@ -23,8 +23,10 @@
         const pane = new Pane({
             title: 'Markov Chain'
         })
-
-        const inputFile = pane.addFolder({title: 'File'})
+        pane.element.style.position = 'fixed';
+        pane.element.style.zIndex = '9000';
+        pane.element.style.top = '8px';
+        pane.element.style.left = '8px';
     }
 	const scale = spring(1)
 </script>
