@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Counter from './Counter.svelte';
-	//import Box from './Box.svelte';
 	let files;
 </script>
 
@@ -10,14 +8,7 @@
 </svelte:head>
 
 <section>
-	<h1>
-		Data Visualization
-	</h1>
-
-	<label for="many">Upload markov chain data file (.csv):</label>
-	<input id="markovChainDataFile" type="file" bind:files/>
-
-	<Counter />
+	<h1>Derek Rogers</h1>
 
 </section>
 

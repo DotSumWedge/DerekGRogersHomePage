@@ -11,7 +11,7 @@
 	</main>
 
 	<footer>
-		<p>Footer goes here</p>
+		<a href="https://www.linkedin.com/in/derek-rogers-218b04116/">LinkedIn</a>
 	</footer>
 </div>
 

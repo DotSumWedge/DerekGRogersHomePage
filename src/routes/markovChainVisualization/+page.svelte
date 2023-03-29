@@ -14,12 +14,15 @@
 
     const markovChainFile = null;
 
+    // Example of how to create a curve used as an edge to connect nodes
     const startPoint = new Three.Vector3(0, 0, 0);
     const endPoint = new Three.Vector3(-8, 0, 0);
     const curve = new Three.CatmullRomCurve3([startPoint, endPoint]);
 
     if(browser){
-        const pane = new Pane({title: 'Markov Chain'})
+        const pane = new Pane({
+            title: 'Markov Chain'
+        })
 
         const inputFile = pane.addFolder({title: 'File'})
     }

@@ -5,7 +5,7 @@
 </script>
 
 <header>
-	<div class="corner">
+	<div class="corner" id="topLeftHeaderDiv">
 		<a href="https://github.com/DotSumWedge">
 			<img src={github} alt="GitHub" />
 		</a>
