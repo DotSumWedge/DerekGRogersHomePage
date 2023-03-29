@@ -23,10 +23,23 @@
         const pane = new Pane({
             title: 'Markov Chain'
         })
+
         pane.element.style.position = 'fixed';
         pane.element.style.zIndex = '9000';
         pane.element.style.top = '8px';
         pane.element.style.left = '8px';
+
+        const stateAttributesFolder = pane.addFolder({
+            title: 'State Attributes'
+        })
+
+        const transitionAttributesFolder = pane.addFolder({
+            title: 'Transition Attributes and Factors'
+        })
+
+        const predictionsFolder = pane.addFolder({
+            title: 'Transition Attributes and Factors'
+        })
     }
 	const scale = spring(1)
 </script>
