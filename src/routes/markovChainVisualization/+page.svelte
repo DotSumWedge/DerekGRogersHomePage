@@ -4,13 +4,18 @@
 	import * as Three from 'three';
     import { browser } from '$app/environment';
     import { Pane } from 'tweakpane';
+    import * as PaneEssentials from '@tweakpane/plugin-essentials';
     import { spring } from 'svelte/motion'
 	import { degToRad } from 'three/src/math/MathUtils'
 	import * as Utils from 'three/src/math/MathUtils';
     import Header from '../Header.svelte';
 
-    const gridHelper = new Three.GridHelper(40, 40)
-    const axesHelper = new Three.AxesHelper(20)
+    // TODO: pressing a button:
+        // - displays 4 random numbers that are 2 digits (ie 04 or 40)
+        // - Changes the background color and the digit text color
+
+    const gridHelper = new Three.GridHelper(10, 10)
+    const axesHelper = new Three.AxesHelper(10)
 
     const markovChainFile = null;
 
@@ -24,10 +29,27 @@
             title: 'Markov Chain'
         })
 
+        pane.registerPlugin(PaneEssentials);
         pane.element.style.position = 'fixed';
         pane.element.style.zIndex = '9000';
         pane.element.style.top = '8px';
         pane.element.style.left = '8px';
+
+
+        const fileSelectionFolder = pane.addFolder({
+            title: 'Select File'
+        })
+
+        const fileSelectDropDown = fileSelectionFolder.addBlade({
+            view: 'list',
+            label: 'existing files:',
+            options: [
+                {text: 'weather.csv', value: ''},
+                {text: 'audio.csv', value: ''},
+                {text: 'networkState.csv', value: ''},
+            ],
+            value: 'something',
+        })
 
         const stateAttributesFolder = pane.addFolder({
             title: 'State Attributes'
@@ -38,8 +60,12 @@
         })
 
         const predictionsFolder = pane.addFolder({
-            title: 'Transition Attributes and Factors'
+            title: 'Predictions'
         })
+
+        const documenationButton = pane.addButton({
+            title: 'Documentation',
+        });
     }
 	const scale = spring(1)
 </script>

@@ -26,6 +26,7 @@
 		"@threlte/rapier": "^0.5.0",
 		"@threlte/theatre": "^0.0.2",
 		"@tweakpane/core": "^1.1.5",
+		"@tweakpane/plugin-essentials": "^0.1.8",
 		"@types/cookie": "^0.5.1",
 		"@types/three": "^0.149.0",
 		"@typescript-eslint/eslint-plugin": "^5.45.0",
