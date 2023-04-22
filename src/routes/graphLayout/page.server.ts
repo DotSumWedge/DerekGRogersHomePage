@@ -19,7 +19,8 @@ interface Graph {
   edges: Edge[];
 }
 
-function gripLayout(graph: Graph, rounds: number): void {
+function graphLayout(graph: Graph, rounds: number): void {
+  return;
   const filtration = createFiltration(graph);
   const schedulingFunction = setupSchedulingFunction(graph);
   
@@ -70,3 +71,5 @@ function computeLocalTemperatures(vertices: number[], graph: Graph): number[] {
 function computeDisplacement(vertices: number[], heat: number[], graph: Graph): Vertex[] {
   // TODO: Implement this function
 }
+
+export { graphLayout };
