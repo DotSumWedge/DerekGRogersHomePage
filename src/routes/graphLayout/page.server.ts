@@ -1,3 +1,6 @@
+// Source:
+// Gajer, Pawel, Michael T. Goodrich, and Stephen G. Kobourov. "A fast multi-dimensional algorithm for drawing large graphs." Graph Drawing’00 Conference Proceedings. 2000.
+// https://www2.cs.arizona.edu/~kobourov/grip_paper.pdf
 
 
 interface Vertex {
