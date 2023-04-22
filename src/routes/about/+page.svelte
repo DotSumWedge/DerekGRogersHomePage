@@ -1,6 +1,10 @@
 <script lang="ts">
 	import Counter from '../Counter.svelte';
 	let files;
+	let digit = "01";
+	// TODO: pressing a button:
+	// - displays 4 random numbers that are 2 digits (ie 04 or 40)
+	// - Changes the background color and the digit text color
 </script>
 
 <svelte:head>
@@ -9,13 +13,15 @@
 </svelte:head>
 
 <div class="text-column">
-	<h1>Place to learn about and test ideas</h1>
-
 	<label for="many">Upload markov chain data file (.csv):</label>
 	<input id="markovChainDataFile" type="file" bind:files/>
 	
 	<h1>
 		Data Visualization
 	</h1>
+
 	<Counter />
+
+	<button>Digit Randomizer</button>
+	<h1>{digit}</h1>
 </div>

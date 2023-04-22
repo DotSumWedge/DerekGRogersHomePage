@@ -10,10 +10,6 @@
 	import * as Utils from 'three/src/math/MathUtils';
     import Header from '../Header.svelte';
 
-    // TODO: pressing a button:
-        // - displays 4 random numbers that are 2 digits (ie 04 or 40)
-        // - Changes the background color and the digit text color
-
     const gridHelper = new Three.GridHelper(10, 10)
     const axesHelper = new Three.AxesHelper(10)
 
@@ -59,10 +55,12 @@
             title: 'Transition Attributes and Factors'
         })
 
+        // 
         const predictionsFolder = pane.addFolder({
             title: 'Predictions'
         })
 
+        // Provide a link to the github repo
         const documenationButton = pane.addButton({
             title: 'Documentation',
         });
