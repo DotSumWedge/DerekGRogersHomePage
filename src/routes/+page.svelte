@@ -17,7 +17,9 @@
 				.trim()
 			)
 		);
+		// remove the last element as it show up as undefined and the cell that contains links to github and linked in
 		resumeData.pop();
+		resumeData.splice(2, 1);
 	});
 </script>
 
@@ -29,17 +31,19 @@
 <section>
 	<h1>Derek Rogers</h1>
 	{#each resumeData as row}
-		{#if row[0] !== '' && row[0] !== 'undefined'}
-			{#if row[0] === 'SUMMARY' || row[0] === 'EDUCATION' || row[0] === 'WORK EXPERIENCE'}
-				<h1>{row[0]}</h1>
-			{:else}
-				<p>{row[0]}</p>
-			{/if}
-        {:else if row[1] !== '' && row[1] !== 'undefined'}
-            <h2>{row[1]}</h2>
-            {#if row[4] !== '' && row[4] !== 'undefined'}
-                <p>{row[4]}</p>
+        {#if row[0] !== '' && row[0] !== 'undefined'}
+            {#if row[0] === 'SUMMARY' || row[0] === 'EDUCATION' || row[0] === 'WORK EXPERIENCE'}
+                <h1>{row[0]}</h1>
+            {:else}
+                <p>{row[0]}</p>
             {/if}
+        {:else if row[1] !== '' && row[1] !== 'undefined'}
+            <div style="display: flex;">
+                {#if row[4] !== '' && row[4] !== 'undefined'}
+                    <h3 style="margin-right: 10px;">{row[4]}</h3>
+                {/if}
+                <h2>{row[1]}</h2>
+            </div>
         {:else}
             {#each row.filter(cell => cell !== '' && cell !== 'undefined') as cell}
                 <p>{cell}</p>
