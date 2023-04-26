@@ -35,16 +35,16 @@
 			{:else}
 				<p>{row[0]}</p>
 			{/if}
-		{:else if row[1] !== '' && row[1] !== 'undefined'}
-			<h2>{row[1]}</h2>
-			{#if row[4] !== '' && row[4] !== 'undefined'}
-				<p>{row[4]}</p>
-			{/if}
-		{:else}
-			{#each row.filter(cell => cell !== '' && cell !== 'undefined') as cell}
-				<p>{cell}</p>
-			{/each}
-		{/if}
+        {:else if row[1] !== '' && row[1] !== 'undefined'}
+            <h2>{row[1]}</h2>
+            {#if row[4] !== '' && row[4] !== 'undefined'}
+                <p>{row[4]}</p>
+            {/if}
+        {:else}
+            {#each row.filter(cell => cell !== '' && cell !== 'undefined') as cell}
+                <p>{cell}</p>
+            {/each}
+        {/if}
   	{/each}
 </section>
 
@@ -59,5 +59,9 @@
 
 	h1 {
 		width: 100%;
+	}
+
+	h2 {
+		color: #174ae4;
 	}
 </style>
