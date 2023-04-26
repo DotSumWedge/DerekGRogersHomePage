@@ -1,6 +1,17 @@
 <script lang="ts">
+	import { onMount } from 'svelte'
+	let resumeData;
 
-	let files;
+	onMount(async () => {
+    const response = await fetch('/src/lib/DerekRogersResume.csv');
+    const text = await response.text();
+    const rows = text.split('\n').slice(1);
+    resumeData = rows.map(row => {
+      const [name, email, phone] = row.split(',');
+      return { name, email, phone };
+    });
+  });
+  console.log(resumeData);
 </script>
 
 <svelte:head>
