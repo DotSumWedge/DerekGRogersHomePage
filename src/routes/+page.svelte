@@ -6,17 +6,29 @@
 		const response = await fetch('/src/lib/DerekRogersResume.csv');
 		const text = await response.text();
 		const rows = text.split('\n').slice(1);
-		resumeData = rows.map(row =>
-			row
-			.split(',')
-			.map(cell =>
-			cell
-				.replace(/[\u200B-\u200D\uFEFF]/g, '')
-				.replace(/▪/g, '')
-				.replace(/"/g, '')
-				.trim()
-			)
-		);
+		resumeData = rows.map(row => {
+			let cells = [];
+			let inQuotes = false;
+			let currentCell = '';
+			for (let i = 0; i < row.length; i++) {
+				if (row[i] === '"') {
+					inQuotes = !inQuotes;
+				} else if (row[i] === ',' && !inQuotes) {
+					cells.push(currentCell);
+					currentCell = '';
+				} else {
+					currentCell += row[i];
+				}
+			}
+			cells.push(currentCell);
+			return cells.map(cell =>
+				cell
+					.replace(/[\u200B-\u200D\uFEFF]/g, '')
+					.replace(/▪/g, '')
+					.replace(/"/g, '')
+					.trim()
+			);
+		});
 		// remove the last element as it show up as undefined and the cell that contains links to github and linked in
 		resumeData.pop();
 		resumeData.splice(2, 1);
@@ -71,9 +83,5 @@
 
 	h1 {
 		width: 100%;
-	}
-
-	h2 {
-		color: #174ae4;
 	}
 </style>
