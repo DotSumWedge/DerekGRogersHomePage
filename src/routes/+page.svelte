@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte'
 	let resumeData: string[][] = [];
 
+	// load in csv file into jsx
 	onMount(async () => {
 		const response = await fetch('/src/lib/DerekRogersResume.csv');
 		const text = await response.text();
@@ -21,6 +22,7 @@
 				}
 			}
 			cells.push(currentCell);
+			// remove unwanted special characters
 			return cells.map(cell =>
 				cell
 					.replace(/[\u200B-\u200D\uFEFF]/g, '')
@@ -57,7 +59,7 @@
         {:else if row[1] !== '' && row[1] !== 'undefined'}
             <div>
                 {#if row[4] !== '' && row[4] !== 'undefined'}
-                    <h3 style="margin-right: 10px;">{row[4]}</h3>
+                    <h3>{row[4]}</h3>
                 {/if}
                 <h2>{row[1]}</h2>
             </div>
@@ -66,7 +68,7 @@
                 {#if cell.includes(';')}
                     <div>
                         {#each cell.split(';') as item}
-                            <p style="margin-right: 10px;">{item.trim()}</p>
+                            <p>{item.trim()}</p>
                         {/each}
                     </div>
                 {:else}
@@ -88,6 +90,15 @@
 
 	h1 {
 		width: 100%;
+	}
+
+	h3 {
+		margin-right: 10px;
+		font-size: 18px;
+	}
+
+	p {
+		margin-right: 10px;
 	}
 
 	div {
