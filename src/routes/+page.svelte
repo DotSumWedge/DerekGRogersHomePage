@@ -46,7 +46,15 @@
             </div>
         {:else}
             {#each row.filter(cell => cell !== '' && cell !== 'undefined') as cell}
-                <p>{cell}</p>
+                {#if cell.includes(';')}
+                    <div style="display: flex;">
+                        {#each cell.split(';') as item}
+                            <p style="margin-right: 10px;">{item.trim()}</p>
+                        {/each}
+                    </div>
+                {:else}
+                    <p>{cell}</p>
+                {/if}
             {/each}
         {/if}
   	{/each}
