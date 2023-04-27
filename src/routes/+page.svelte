@@ -31,7 +31,12 @@
 		});
 		// remove the last element as it show up as undefined and the cell that contains links to github and linked in
 		resumeData.pop();
+		// remove github and linked in line as they are in the header/footer
 		resumeData.splice(2, 1);
+		// remove trailing commas from the element with the email and phone number
+		resumeData[1][0] = resumeData[1][0].replace(/,+$/, "");
+		
+		//console.log(resumeData);
 	});
 </script>
 
@@ -50,7 +55,7 @@
                 <p>{row[0]}</p>
             {/if}
         {:else if row[1] !== '' && row[1] !== 'undefined'}
-            <div style="display: flex;">
+            <div>
                 {#if row[4] !== '' && row[4] !== 'undefined'}
                     <h3 style="margin-right: 10px;">{row[4]}</h3>
                 {/if}
@@ -59,7 +64,7 @@
         {:else}
             {#each row.filter(cell => cell !== '' && cell !== 'undefined') as cell}
                 {#if cell.includes(';')}
-                    <div style="display: flex;">
+                    <div>
                         {#each cell.split(';') as item}
                             <p style="margin-right: 10px;">{item.trim()}</p>
                         {/each}
@@ -83,5 +88,9 @@
 
 	h1 {
 		width: 100%;
+	}
+
+	div {
+		display: flex;
 	}
 </style>
