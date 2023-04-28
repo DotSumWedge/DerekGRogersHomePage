@@ -71,8 +71,10 @@
                             <p>{item.trim()}</p>
                         {/each}
                     </div>
-                {:else}
+				{:else if cell === "Southern Methodist University"}
                     <p>{cell}</p>
+                {:else}
+                    <p class="left-justified">• {cell}</p>
                 {/if}
             {/each}
         {/if}
@@ -104,4 +106,9 @@
 	div {
 		display: flex;
 	}
+
+	.left-justified {
+        margin-left: 280px;
+		align-self: flex-start;
+    }
 </style>
