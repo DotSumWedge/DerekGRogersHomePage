@@ -9,6 +9,30 @@
 	import { degToRad } from 'three/src/math/MathUtils'
 	import * as Utils from 'three/src/math/MathUtils';
     import Header from '../Header.svelte';
+    import ForceGraph3D from '3d-force-graph';
+
+    const myData = {
+        nodes: [
+            { id: 'A', name: 'Node A' },
+            { id: 'B', name: 'Node B' },
+            { id: 'C', name: 'Node C' }
+        ],
+        links: [
+            { source: 'A', target: 'B' },
+            { source: 'B', target: 'C' }
+        ]
+    };
+
+    let myDOMElement: HTMLElement;
+    let Graph: ReturnType<typeof ForceGraph3D>;
+
+    // onMount runs after the component is first rendered in the DOM
+    import { onMount } from 'svelte';
+    onMount(() => {
+        Graph = ForceGraph3D()(myDOMElement);
+        // pass in your data to the graphData method
+        Graph.graphData(myData);
+    });
 
     const gridHelper = new Three.GridHelper(10, 10)
     const axesHelper = new Three.AxesHelper(10)
@@ -55,7 +79,6 @@
             title: 'Transition Attributes and Factors'
         })
 
-        // 
         const predictionsFolder = pane.addFolder({
             title: 'Predictions'
         })
@@ -63,6 +86,10 @@
         // Provide a link to the github repo
         const documenationButton = pane.addButton({
             title: 'Documentation',
+        });
+
+        const homeButton = pane.addButton({
+            title: 'Return To Home Page',
         });
     }
 	const scale = spring(1)
@@ -73,71 +100,7 @@
 	<meta name="description" content="Takes in event data and creates a 3d visualzation" />
 </svelte:head>
 
-<div class="scene">
-	<Threlte.Canvas>
-        <!-- Overlay grid and axis elements -->
-        <Threlte.Object3DInstance object = {gridHelper} />
-        <Threlte.Object3DInstance object = {axesHelper} />
-
-        <!-- Camera -->
-        <Threlte.PerspectiveCamera 
-            position={{ x: 20, y: 20, z: 20 }} 
-            fov={50}>
-            <!-- Controls -->
-            <Threlte.OrbitControls/>
-        </Threlte.PerspectiveCamera>
-
-        <!-- Lights the scene equally -->
-        <Threlte.AmbientLight color="white" intensity={0.6} />
-
-        <!-- Light that casts a shadow -->
-        <Threlte.DirectionalLight
-            color="yellow"
-            intensity={0.4}
-            position={{ x: 20, y: 5 }}
-            shadow={{
-                camera: { top: 8},
-            }}
-        />
-
-        <!-- Sphere -->
-        <Threlte.Mesh
-            geometry={new Three.SphereGeometry(4, 64, 64)}
-            material={new Three.MeshStandardMaterial({ color: 'purple' })}
-            position={{ y: 4 }}
-            receiveShadow
-            castShadow
-        />
-
-        <!-- Node -->
-        <Threlte.Mesh
-            geometry={new Three.SphereGeometry(4, 64, 64)}
-            material={new Three.MeshStandardMaterial({ color: 'yellow' })}
-            position={{ x: 14, y:4 }}
-            receiveShadow
-            castShadow
-        />
-
-        <!-- Edge -->
-        <Threlte.Mesh
-            geometry={new Three.TubeGeometry(curve, 20, 1, 8, false)}
-            material={new Three.MeshStandardMaterial({ color: 'red' })}
-            position={{ x: 11, y:4 }}
-            receiveShadow
-            castShadow
-        />
-
-        <!-- Floor -->
-        <Threlte.Mesh
-            geometry={new Three.PlaneGeometry(40, 40)}
-            material={new Three.MeshStandardMaterial({
-            color: 'brown',
-            side: Three.DoubleSide,
-            })}
-            rotation={{ x: Utils.DEG2RAD * 90 }}
-            receiveShadow
-        />
-	</Threlte.Canvas>
+<div class="scene" bind:this={myDOMElement}>
 </div>
 
 <style>
