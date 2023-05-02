@@ -28,6 +28,7 @@
         { source: 'A', target: 'B'},
         { source: 'A', target: 'C'},
         { source: 'A', target: 'D'},
+        { source: 'A', target: 'F'},
         { source: 'B', target: 'C'},
         { source: 'B', target: 'E'},
         { source: 'C', target: 'F'},
@@ -40,7 +41,8 @@
         { source:'J', target:'M'},
         { source:'K', target:'N'},
         { source:'L', target:'O'},
-        { source:'M', target:'P'}
+        { source:'M', target:'P'},
+        { source:'O', target:'P'}
     ]
 };
 
