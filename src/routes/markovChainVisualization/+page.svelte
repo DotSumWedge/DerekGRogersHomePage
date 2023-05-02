@@ -1,14 +1,8 @@
 <script lang="ts">
-	import { Canvas, InteractiveObject, OrbitControls, T } from '@threlte/core'
-    import * as Threlte from '@threlte/core';
-	import * as Three from 'three';
     import { browser } from '$app/environment';
+    import { onDestroy } from 'svelte';
     import { Pane } from 'tweakpane';
     import * as PaneEssentials from '@tweakpane/plugin-essentials';
-    import { spring } from 'svelte/motion'
-	import { degToRad } from 'three/src/math/MathUtils'
-	import * as Utils from 'three/src/math/MathUtils';
-    import Header from '../Header.svelte';
     import ForceGraph3D from '3d-force-graph';
 
     const myData = {
@@ -25,6 +19,8 @@
 
     let myDOMElement: HTMLElement;
     let Graph: ReturnType<typeof ForceGraph3D>;
+    let pane;
+    const markovChainFile = null;
 
     // onMount runs after the component is first rendered in the DOM
     import { onMount } from 'svelte';
@@ -34,25 +30,15 @@
         Graph.graphData(myData);
     });
 
-    const gridHelper = new Three.GridHelper(10, 10)
-    const axesHelper = new Three.AxesHelper(10)
-
-    const markovChainFile = null;
-
-    // Example of how to create a curve used as an edge to connect nodes
-    const startPoint = new Three.Vector3(0, 0, 0);
-    const endPoint = new Three.Vector3(-8, 0, 0);
-    const curve = new Three.CatmullRomCurve3([startPoint, endPoint]);
-
     if(browser){
-        const pane = new Pane({
+        pane = new Pane({
             title: 'Markov Chain'
         })
 
         pane.registerPlugin(PaneEssentials);
         pane.element.style.position = 'fixed';
         pane.element.style.zIndex = '9000';
-        pane.element.style.top = '8px';
+        pane.element.style.top = '60px';
         pane.element.style.left = '8px';
 
 
@@ -92,7 +78,12 @@
             title: 'Return To Home Page',
         });
     }
-	const scale = spring(1)
+
+    onDestroy(() => {
+        if (pane) {
+        pane.dispose();
+        }
+    });
 </script>
 
 <svelte:head>
@@ -108,6 +99,7 @@
 	width: 100%;
 	height: 100%;
 	position: absolute;
+    transform: translate(0px, 50px);
 	inset: 0;
 	background: radial-gradient(hsl(220 14% 20%), hsl(220 20% 10%));
 	background-attachment: fixed;
