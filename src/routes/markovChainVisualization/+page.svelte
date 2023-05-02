@@ -81,7 +81,7 @@
 
     onDestroy(() => {
         if (pane) {
-        pane.dispose();
+            pane.dispose();
         }
     });
 </script>
