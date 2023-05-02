@@ -100,10 +100,6 @@
         const documenationButton = pane.addButton({
             title: 'Documentation',
         });
-
-        const homeButton = pane.addButton({
-            title: 'Return To Home Page',
-        });
     }
 
     onDestroy(() => {
