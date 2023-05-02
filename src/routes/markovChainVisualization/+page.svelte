@@ -6,16 +6,43 @@
     import ForceGraph3D from '3d-force-graph';
 
     const myData = {
-        nodes: [
-            { id: 'A', name: 'Node A' },
-            { id: 'B', name: 'Node B' },
-            { id: 'C', name: 'Node C' }
-        ],
-        links: [
-            { source: 'A', target: 'B' },
-            { source: 'B', target: 'C' }
-        ]
-    };
+    nodes: [
+        { id: 'A', name: 'Node A' },
+        { id: 'B', name: 'Node B' },
+        { id: 'C', name: 'Node C' },
+        { id: 'D', name: 'Node D' },
+        { id: 'E', name: 'Node E' },
+        { id: 'F', name: 'Node F' },
+        { id: 'G', name: 'Node G' },
+        { id: 'H', name: 'Node H' },
+        { id: 'I', name: 'Node I' },
+        { id: 'J', name: 'Node J' },
+        { id: 'K', name: 'Node K' },
+        { id: 'L', name: 'Node L' },
+        { id: 'M', name: 'Node M' },
+        { id: 'N', name: 'Node N' },
+        { id: 'O', name: 'Node O' },
+        { id: 'P', name: 'Node P' }
+    ],
+    links: [
+        { source: 'A', target: 'B'},
+        { source: 'A', target: 'C'},
+        { source: 'A', target: 'D'},
+        { source: 'B', target: 'C'},
+        { source: 'B', target: 'E'},
+        { source: 'C', target: 'F'},
+        { source: 'D', target: 'G'},
+        { source: 'E', target: 'H'},
+        { source: 'F', target:'I'},
+        { source:'G', target:'J'},
+        { source:'H', target:'K'},
+        { source:'I', target:'L'},
+        { source:'J', target:'M'},
+        { source:'K', target:'N'},
+        { source:'L', target:'O'},
+        { source:'M', target:'P'}
+    ]
+};
 
     let myDOMElement: HTMLElement;
     let Graph: ReturnType<typeof ForceGraph3D>;
